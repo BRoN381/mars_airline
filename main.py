@@ -25,7 +25,7 @@ chat = ChatOpenAI()
 memory = ConversationBufferMemory(memory_key='history', return_messages=True)
 embeddings = OpenAIEmbeddings()
 db = Chroma(
-    persist_directory=r'C:\Users\iamwi\OneDrive\Desktop\intern\mars_airline\emb_with_filename',
+    persist_directory=r'.\emb_with_filename',
     embedding_function=embeddings
 )
 
