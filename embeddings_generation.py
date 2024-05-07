@@ -8,7 +8,7 @@ import os
 load_dotenv()
 
 # read the file paths from the documents folder
-filepaths = os.listdir(r'.\documents')
+filepaths = os.listdir('./documents')
 
 embeddings = OpenAIEmbeddings()
 
@@ -22,12 +22,12 @@ docs = []
 
 for filepath in filepaths:
     loader = TextLoader(
-        file_path=r'.\documents\\'+filepath, 
+        file_path='./documents/'+filepath, 
         encoding='utf-8',
     )
     docs.extend(loader.load_and_split(text_splitter=text_splitter))
 db = Chroma.from_documents(
     docs,
     embedding=embeddings,
-    persist_directory=r'.\emb_with_filename'
+    persist_directory='./emb_with_filename'
 )
