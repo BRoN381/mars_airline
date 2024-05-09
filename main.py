@@ -64,15 +64,13 @@ def read_str(input: dict):
         else:
             pre_prompt = ChatPromptTemplate.from_messages(
                 [
-                    SystemMessagePromptTemplate.from_template("以下是你和客人之前的對話紀錄，請你根據這些對話紀錄以及客人最新的問題生成一個客人想問的完整的問句，請勿自行回答問題，只要統整出客人想問的完整的問句就好。另外請勿重複提到先前的對話內容，以利後續使用RAG的功能提取跟最新問句相關的資訊。"),
-                    MessagesPlaceholder(variable_name='history'),
-                    HumanMessagePromptTemplate.from_template(f'以下是客人最新詢問的問題：\n {question}')
+                SystemMessagePromptTemplate.from_template("以下是你和客人之前的對話紀錄，請你根據這些對話紀錄以及客人最新的問題生成一個客人想問的完整的問句，請勿自行回答問題或是和客人對話，只要統整出一句你認為客人真正想問的完整的問句就好。另外請勿重複提到先前的對話內容，以利後續使用RAG的功能提取跟最新問句相關的資訊。"),
+                HumanMessagePromptTemplate.from_template(f'以下是對話紀錄：{memory.buffer_as_str}。\n以下是客人最新詢問的問題：\n {question}')
                 ]
             )
             pre_chain = LLMChain(
                 llm=chat,
-                prompt=pre_prompt,
-                memory=memory
+                prompt=pre_prompt
             )
 
             reply = pre_chain({
