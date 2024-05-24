@@ -81,7 +81,7 @@ def read_str(input: dict):
         textList = [text[1] for text in relativeInfo]
         sourceList = [text[0] for text in relativeInfo]
         humanprompt = ''
-        documentTranslate = {'regulations.txt': '公司規章專區', 'schedule.txt': '航班時刻表', 'faq.txt': '常見問題專區'}
+        documentTranslate = {'regulations.txt': '規章條款', 'schedule.txt': '航班時刻表', 'faq.txt': '常見問題'}
         for i in range(len(textList)):
             source = documentTranslate[sourceList[i].split('/')[-1]]
             humanprompt += f'{textList[i]}。\n以上資訊的來源是{source}\n'

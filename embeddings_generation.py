@@ -14,7 +14,7 @@ embeddings = OpenAIEmbeddings()
 
 text_splitter = CharacterTextSplitter(
     separator='。',
-    chunk_size=35,
+    chunk_size=55,
     chunk_overlap=0
 )
 
